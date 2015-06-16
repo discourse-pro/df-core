@@ -1,5 +1,5 @@
 /** @link https://github.com/paddle8/ember-autoresize */
-import { getLayout, measureText } from '../../dom-ruler';
+import { getLayout, measureText } from 'discourse/plugins/df-core/lib/dom-ruler';
 
 const get = Ember.get;
 const set = Ember.set;

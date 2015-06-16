@@ -1,4 +1,4 @@
-import { getStyles, copyStyles } from './styles';
+import { getStyles, copyStyles } from 'discourse/plugins/df-core/lib/dom-ruler/styles';
 import { merge } from './utils';
 import { getLayout } from './layout';
 

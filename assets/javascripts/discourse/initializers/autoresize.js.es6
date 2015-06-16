@@ -1,4 +1,4 @@
 /** @link https://github.com/paddle8/ember-autoresize */
-import '../../vendor/ember-autoresize/ext/text-field';
-import '../../vendor/ember-autoresize/ext/text-area';
+import 'discourse/plugins/df-core/lib/autoresize/ext/text-field';
+import 'discourse/plugins/df-core/lib/autoresize/ext/text-area';
 export default {name: 'autoresize', initialize: function () {}};

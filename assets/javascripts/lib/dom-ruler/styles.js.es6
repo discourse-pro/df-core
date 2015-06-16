@@ -1,4 +1,4 @@
-import { pluck, merge } from './utils';
+import { pluck, merge } from 'discourse/plugins/df-core/lib/dom-ruler/utils';
 
 // A list of all of the style properties
 // to copy over to our example element

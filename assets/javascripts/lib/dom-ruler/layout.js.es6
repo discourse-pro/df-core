@@ -1,4 +1,4 @@
-import { getStyles, detectBoxSizing } from 'discourse/plugins/df-core/lib/dom-ruler/styles';
+import { getStyles, detectBoxSizing } from './styles';
 
 /**
   Normalizes margins to return 'auto' or a number

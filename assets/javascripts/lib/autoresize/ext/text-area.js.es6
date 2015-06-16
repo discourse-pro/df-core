@@ -1,5 +1,5 @@
 /** @link https://github.com/paddle8/ember-autoresize */
-import AutoResize from 'discourse/plugins/df-core/lib/autoresize/mixins/autoresize';
+import AutoResize from '../mixins/autoresize';
 
 var get = Ember.get;
 var isNone = Ember.isNone;

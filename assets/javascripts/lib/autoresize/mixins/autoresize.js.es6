@@ -13,11 +13,13 @@ const observer = Ember.observer;
 const on = Ember.on;
 
 function withUnits(number) {
-  const unitlessNumber = parseInt(number + '', 10) + '';
-  if (unitlessNumber === number + '') {
-    return `${number}px`;
-  }
-  return number;
+	const unitlessNumber = parseInt(number + '', 10) + '';
+	if (unitlessNumber === number + '') {
+		// Раньше тут стояло `${number}px`
+		// Однако uglifyjs такой синтаксис не понял: «Unexpected character '`'».
+		return number + "px";
+	}
+	return number;
 }
 
 /**

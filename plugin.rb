@@ -3,3 +3,16 @@
 # version: 1.0.0
 # authors: Dmitry Fedyuk
 # url: https://discourse.pro
+require 'site_setting_extension'
+SiteSettingExtension.module_eval do
+	alias_method :core__types, :types
+	def types
+		result = @types
+		if not result
+			result = core__types
+			result[:paypal_buttons] = result.length + 1;
+			result[:paid_membership_plans] = result.length + 1;
+		end
+		return result
+	end
+end

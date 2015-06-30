@@ -30,6 +30,15 @@ export default Ember.Component.extend({
 						item: _this.get('item')
 						, groupId: evt.added ? evt.added.id : evt.removed.id
 						, isAdded: !!evt.added
+						/**
+						 * 2015-06-30
+						 * Чтобы можно было различать несколько компонентов.
+						 * Например:
+						 * @see plugins/df-paid-membership/assets/javascripts/admin/templates/components/paid-membership-plans.hbs
+						 * {{df-user-groups type='allowed' item=item selected=item.allowedGroupIds}}
+						 * {{df-user-groups  type='granted' item=item selected=item.grantedGroupIds}}
+						 */
+						, type: _this.get('type')
 					}});
 				}
 			}.bind(_this));

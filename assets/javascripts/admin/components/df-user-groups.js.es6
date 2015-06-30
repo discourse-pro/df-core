@@ -16,7 +16,7 @@ export default Ember.Component.extend({
 	 */
 	,_init: function() {
 		const _this = this;
-		Discourse.Group.findAll().then(function(availableUserGroups){
+		Discourse.Group.findAll().then(function(availableUserGroups) {
 			_this.set('allGroups', availableUserGroups);
 			_this.$('input').select2({
 				multiple: true

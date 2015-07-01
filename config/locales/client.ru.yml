@@ -4,3 +4,7 @@ ru:
       site_settings:
         categories:
           paypal: 'PayPal'
+    df:
+      acl_type:
+        whitelist: 'белый список'
+        blacklist: 'чёрный список'

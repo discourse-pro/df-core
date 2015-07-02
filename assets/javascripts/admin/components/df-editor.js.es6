@@ -1,8 +1,10 @@
 import loadScript from 'discourse/lib/load-script';
 export default Ember.Component.extend({
-	 _suffix: undefined
+	classNameBindings: [':df-editor-component']
+	, _suffix: undefined
 	,_init: function() {
 		this._suffix = '-' + Math.floor(10000 * Math.random()).toString();
+		console.log('suffix: ' + this._suffix);
 		this.set('buttonBarId', 'wmd-button-bar' + this._suffix);
 		this.set('textareaId', 'wmd-input' + this._suffix);
 		this.set('previewId', 'wmd-preview' + this._suffix);
@@ -14,6 +16,15 @@ export default Ember.Component.extend({
 			$textarea.data('init', true);
 			self._editor = self.createEditor();
 			self._editor.run();
+			var buttonsToHide = ['wmd-quote-button', 'wmd-quote-post', 'wmd-image-button'];
+			$('.wmd-button', self.$()).each(function() {
+				var $this = $(this);
+				var cssClass = this.id.replace(self._suffix, '');
+				$this.addClass(this.id.replace(self._suffix, ''));
+				if (-1 < buttonsToHide.indexOf(cssClass)) {
+					$this.hide();
+				}
+			});
 			Ember.run.scheduleOnce('afterRender', self, self._refreshPreview);
 		});
 	}.on('didInsertElement')

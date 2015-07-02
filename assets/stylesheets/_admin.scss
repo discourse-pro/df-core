@@ -1,0 +1,8 @@
+.df-editor {
+	textarea {
+		width: 100%;
+		box-sizing: border-box;
+		color: rgb(145, 145, 145);
+		&:active, &:hover, &:focus {color: #222222;}
+	}
+}

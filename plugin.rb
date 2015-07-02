@@ -4,6 +4,7 @@
 # authors: Dmitry Fedyuk
 # url: https://discourse.pro
 register_asset 'javascripts/admin.js', :admin
+register_asset 'stylesheets/main.scss'
 require 'site_setting_extension'
 SiteSettingExtension.module_eval do
 	alias_method :core__types, :types

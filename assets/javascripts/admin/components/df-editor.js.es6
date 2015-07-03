@@ -4,7 +4,6 @@ export default Ember.Component.extend({
 	, _suffix: undefined
 	,_init: function() {
 		this._suffix = '-' + Math.floor(10000 * Math.random()).toString();
-		console.log('suffix: ' + this._suffix);
 		this.set('buttonBarId', 'wmd-button-bar' + this._suffix);
 		this.set('textareaId', 'wmd-input' + this._suffix);
 		this.set('previewId', 'wmd-preview' + this._suffix);

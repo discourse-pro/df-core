@@ -1,0 +1,23 @@
+/**
+ * 2015-07-05
+ * По-разному отображаем имя плагина и имя опции.
+ * @see R:/mage2.ru/code/plugins/df-core/assets/javascripts/admin/i.js.es6
+ */
+.setting-label {
+	.df-setting {
+		.plugin-name {
+			font-size: 90%;
+			&:after {
+				content: ']';
+				vertical-align: text-top;
+				font-size: 90%;
+			}
+			&:before {
+				content: '[';
+				vertical-align: text-top;
+				font-size: 90%;
+			}
+		}
+		.short-name {font-weight: bold;}
+	}
+}

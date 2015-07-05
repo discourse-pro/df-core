@@ -1,3 +1,8 @@
-{{df-editor value=buffered.value}}
+{{!--
+	2015-07-05
+	«customClass=setting.setting» позволяет нам задавать индивидуальные правила CSS
+	для каждого отдельного поля.
+--}}
+{{df-editor value=buffered.value customClass=setting.setting}}
 {{setting-validation-message message=validationMessage}}
 <div class='desc'>{{{unbound setting.description}}}</div>

@@ -1,6 +1,7 @@
 import loadScript from 'discourse/lib/load-script';
 export default Ember.Component.extend({
-	classNames: ['df-editor-component']
+	classNameBindings: ['customClass']
+	,classNames: ['df-editor-component']
 	, _suffix: undefined
 	,_init: function() {
 		this._suffix = '-' + Math.floor(10000 * Math.random()).toString();

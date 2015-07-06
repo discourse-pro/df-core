@@ -1,0 +1,55 @@
+// Пример использования:
+// @import '../../../plugins/df-core/assets/stylesheets/admin-lib/settings';
+// @see plugins/df-paid-membership/assets/stylesheets/_admin.scss
+//
+// 2015-07-02
+// Задача этого миксина: высвободить дополнительное место для настройки.
+// 2015-07-06
+// Хотелось бы задавать класс CSS
+// непосредственно в файле settings.yml плагина, но пока это невозможно.
+// На будущее, надо подумать, как безопасно внедриться в функцию
+// SiteSettingExtension::all_settings
+// @see lib/site_setting_extension.rb
+@mixin df-row-setting-wide {
+	> .setting-value {
+		// В ядре: 73%.
+		// Устанавливая 100%, мы «пропускаем» вперёд и вверх кнопки.
+		width: 90%;
+		margin-left: 10%;
+	}
+	// div..setting-controls — это две кнопки: сохранить и отменить.
+	// Они появляются на месте кнопки «Reset» после редактирования какой-либо опции.
+	>.setting-controls {
+		float: none;
+		display: inline-block;
+	}
+	// «button» — это кнопка «Reset».
+	> button {}
+	// На всякий случай.
+	width: 100%;
+	overflow: hidden;
+	// На будущее. Пока в ядре они и так нулевые
+	margin: {left: 0; right: 0;}
+	padding: {left: 0; right: 0;}
+}
+// 2015-07-05
+// По-разному отображаем имя плагина и имя опции.
+// @see R:/mage2.ru/code/plugins/df-core/assets/javascripts/admin/i.js.es6
+.setting-label {
+	.df-setting {
+		.plugin-name {
+			font-size: 90%;
+			&:after {
+				content: ']';
+				vertical-align: text-top;
+				font-size: 90%;
+			}
+			&:before {
+				content: '[';
+				vertical-align: text-top;
+				font-size: 90%;
+			}
+		}
+		.short-name {font-weight: bold;}
+	}
+}

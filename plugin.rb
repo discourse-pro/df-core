@@ -18,6 +18,8 @@ Airbrake.configure do |config|
   config.secure  = config.port == 443
   config.development_environments = []
 end
+gem 'attr_required', '1.0.0'
+gem 'paypal-express', '0.8.1', {require_name: 'paypal'}
 require 'site_setting_extension'
 SiteSettingExtension.module_eval do
 	alias_method :core__types, :types

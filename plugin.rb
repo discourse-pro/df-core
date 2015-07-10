@@ -20,11 +20,38 @@ Airbrake.configure do |config|
 end
 gem 'attr_required', '1.0.0'
 gem 'paypal-express', '0.8.1', {require_name: 'paypal'}
+Paypal::Util.module_eval do
+=begin
+	2015-07-10
+	Чтобы гем не передавал параметры со значением "0.00"
+	(чувствую, у меня из-за них пока не работает...)
+	{
+	  "PAYERID" => "UES9EX5HHA8ZJ",
+	  "PAYMENTREQUEST_0_AMT" => "0.00",
+	  "PAYMENTREQUEST_0_PAYMENTACTION" => "Sale",
+	  "PAYMENTREQUEST_0_SHIPPINGAMT" => "0.00",
+	  "PAYMENTREQUEST_0_TAXAMT" => "0.00",
+	  "TOKEN" => "EC-6MJ94873BM276735F"
+	}
+=end
+	def self.formatted_amount(x)
+		puts "!!!!!!!!!!!MY FORMATTED AMOUNT!!!!!!!!!!!!!"
+		result = sprintf("%0.2f", BigDecimal.new(x.to_s).truncate(2))
+		'0.00' == result ? '' : result
+	end
+end
 Paypal::NVP::Request.module_eval do
 	alias_method :core__request, :request
 	def request(method, params = {})
 		# http://stackoverflow.com/a/4686157/254475
 		if :SetExpressCheckout == method
+			# 2015-07-10
+			# Это поле обязательно для заполнение, однако гем его почему-то не заполняет.
+			# «Version of the callback API.
+			# This field is required when implementing the Instant Update Callback API.
+			# It must be set to 61.0 or a later version.
+			# This field is available since version 61.0.»
+			# https://developer.paypal.com/docs/classic/api/merchant/SetExpressCheckout_API_Operation_NVP/#localecode
 			params[:CALLBACKVERSION] = self.version
 		end
 		Airbrake.notify(

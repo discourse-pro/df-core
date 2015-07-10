@@ -35,7 +35,6 @@ Paypal::Util.module_eval do
 	}
 =end
 	def self.formatted_amount(x)
-		puts "!!!!!!!!!!!MY FORMATTED AMOUNT!!!!!!!!!!!!!"
 		result = sprintf("%0.2f", BigDecimal.new(x.to_s).truncate(2))
 		'0.00' == result ? '' : result
 	end

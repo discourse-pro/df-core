@@ -40,6 +40,14 @@ Paypal::Util.module_eval do
 	end
 end
 Paypal::NVP::Request.module_eval do
+	def post(method, params)
+		allParams = common_params.merge(params).merge(:METHOD => method)
+		Airbrake.notify(
+			:error_message => "Paypal::NVP::Request.post #{method}",
+			:parameters => allParams.merge('URL' => self.class.endpoint)
+		)
+		RestClient.post(self.class.endpoint, allParams)
+	end
 	alias_method :core__request, :request
 	def request(method, params = {})
 		# http://stackoverflow.com/a/4686157/254475

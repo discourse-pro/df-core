@@ -5,6 +5,19 @@
 # url: https://discourse.pro
 register_asset 'javascripts/admin.js', :admin
 register_asset 'stylesheets/main.scss'
+# Из коробки airbrake не устанавливается.
+# Поэтому чуточку подправил его и устанавливаю локальную версию.
+spec_file = "#{Rails.root}/plugins/df-core/gems/2.2.2/specifications/airbrake-4.3.0.gemspec"
+spec = Gem::Specification.load spec_file
+spec.activate
+require 'airbrake'
+Airbrake.configure do |config|
+  config.api_key = 'c07658a7417f795847b2280bc2fd7a79'
+  config.host    = 'log.dmitry-fedyuk.com'
+  config.port    = 80
+  config.secure  = config.port == 443
+  config.development_environments = []
+end
 require 'site_setting_extension'
 SiteSettingExtension.module_eval do
 	alias_method :core__types, :types
@@ -17,17 +30,5 @@ SiteSettingExtension.module_eval do
 			result[:paid_membership_plans] = result.length + 1;
 		end
 		return result
-	end
-end
-require 'plugin/instance'
-Plugin::Instance.class_eval do
-	def df_gem(name, version)
-		gems_path = File.dirname(path) + "/gems/#{RUBY_VERSION}"
-		spec_path = gems_path + "/specifications"
-		spec_file = spec_path + "/#{name}-#{version}.gemspec"
-		puts "spec_file: #{spec_file}"
-		spec = Gem::Specification.load spec_file
-		spec.activate
-		require name
 	end
 end

@@ -20,6 +20,20 @@ Airbrake.configure do |config|
 end
 gem 'attr_required', '1.0.0'
 gem 'paypal-express', '0.8.1', {require_name: 'paypal'}
+Paypal::NVP::Request.module_eval do
+	alias_method :core__request, :request
+	def request(method, params = {})
+		# http://stackoverflow.com/a/4686157/254475
+		if :SetExpressCheckout == method
+			params[:CALLBACKVERSION] = self.version
+		end
+		Airbrake.notify(
+			:error_message => "Paypal::NVP::Request.request #{method}",
+			:parameters => params
+		)
+		core__request method, params
+	end
+end
 require 'site_setting_extension'
 SiteSettingExtension.module_eval do
 	alias_method :core__types, :types

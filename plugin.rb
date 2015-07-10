@@ -25,6 +25,7 @@ Plugin::Instance.class_eval do
 		gems_path = File.dirname(path) + "/gems/#{RUBY_VERSION}"
 		spec_path = gems_path + "/specifications"
 		spec_file = spec_path + "/#{name}-#{version}.gemspec"
+		puts spec_file
 		spec = Gem::Specification.load spec_file
 		spec.activate
 		require name

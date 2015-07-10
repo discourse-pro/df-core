@@ -21,14 +21,12 @@ SiteSettingExtension.module_eval do
 end
 require 'plugin/instance'
 Plugin::Instance.class_eval do
-	def df_gem(name, version, opts = {})
+	def df_gem(name, version)
 		gems_path = File.dirname(path) + "/gems/#{RUBY_VERSION}"
 		spec_path = gems_path + "/specifications"
 		spec_file = spec_path + "/#{name}-#{version}.gemspec"
-		if File.exists? spec_file
-			spec = Gem::Specification.load spec_file
-			spec.activate
-			require opts[:require_name] ? opts[:require_name] : name
-		end
+		spec = Gem::Specification.load spec_file
+		spec.activate
+		require name
 	end
 end

@@ -43,7 +43,7 @@ Paypal::NVP::Request.module_eval do
 	def post(method, params)
 		allParams = common_params.merge(params).merge(:METHOD => method)
 		Airbrake.notify(
-			:error_message => "Paypal::NVP::Request.post #{method}",
+			:error_message => "POST #{method}",
 			:parameters => allParams.merge('URL' => self.class.endpoint)
 		)
 		RestClient.post(self.class.endpoint, allParams)
@@ -61,10 +61,6 @@ Paypal::NVP::Request.module_eval do
 			# https://developer.paypal.com/docs/classic/api/merchant/SetExpressCheckout_API_Operation_NVP/#localecode
 			params[:CALLBACKVERSION] = self.version
 		end
-		Airbrake.notify(
-			:error_message => "Paypal::NVP::Request.request #{method}",
-			:parameters => params
-		)
 		core__request method, params
 	end
 end

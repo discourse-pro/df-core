@@ -72,7 +72,6 @@ after_initialize do
 		class << self
 			alias_method :_decorate_context, :decorate_context
 			def decorate_context(context)
-				puts 'MY DECORATE CONTEXT!!!'
 				# https://github.com/cucumber/gherkin/blob/4d6c049cc75d154e1cf660794a078570e8aa7849/lib/gherkin/native/therubyracer.rb#L26-L30
 				context['console'] = STDOUT
 				def STDOUT.log(*a)

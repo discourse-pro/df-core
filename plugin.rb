@@ -4,6 +4,7 @@
 # authors: Dmitry Fedyuk
 # url: https://discourse.pro
 register_asset 'javascripts/admin.js', :admin
+register_asset 'javascripts/admin/editor.js', :admin
 register_asset 'stylesheets/main.scss'
 # Из коробки airbrake не устанавливается.
 # Поэтому чуточку подправил его и устанавливаю локальную версию.

@@ -4,7 +4,6 @@ ru:
       site_settings:
         categories:
           df_core: 'Discourse.PRO общее'
-          paypal: 'PayPal'
     df:
       acl_type:
         whitelist: 'белый список'

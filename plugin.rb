@@ -6,6 +6,8 @@
 register_asset 'javascripts/admin.js', :admin
 register_asset 'javascripts/admin/editor.js', :admin
 register_asset 'stylesheets/main.scss'
+pluginAppPath = "#{Rails.root}/plugins/df-core/app/"
+Discourse::Application.config.autoload_paths += Dir["#{pluginAppPath}models", "#{pluginAppPath}controllers"]
 # Из коробки airbrake не устанавливается.
 # Поэтому чуточку подправил его и устанавливаю локальную версию.
 spec_file = "#{Rails.root}/plugins/df-core/gems/2.2.2/specifications/airbrake-4.3.0.gemspec"
@@ -97,5 +99,19 @@ SiteSettingExtension.module_eval do
 			result[:paid_membership_plans] = result.length + 1;
 		end
 		return result
+	end
+end
+after_initialize do
+	module ::Df::Core
+		class Engine < ::Rails::Engine
+			engine_name 'df_core'
+			isolate_namespace ::Df::Core
+		end
+	end
+	::Df::Core::Engine.routes.draw do
+		get '/thumb/:width/:height' => 'thumb#index'
+	end
+	Discourse::Application.routes.append do
+		mount ::Df::Core::Engine, at: '/df/core'
 	end
 end

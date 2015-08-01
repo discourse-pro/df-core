@@ -1,0 +1,3 @@
+ru:
+  site_settings:
+    «Discourse_PRO»_Currency: "Валюта по-умолчанию для плагинов <a href='https://discourse.pro'>discourse.pro</a>.<br/>Она применяется для показа цен и для платёжных транзакций.<br/>На текущий момент, для выбора доступны только <a href='https://developer.paypal.com/docs/classic/api/currency_codes/'>валюты, поддерживаемые PayPal</a>."

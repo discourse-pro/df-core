@@ -4,7 +4,16 @@ ru:
       site_settings:
         categories:
           df_core: 'Discourse.PRO общее'
+  js:
     df:
-      acl_type:
-        whitelist: 'белый список'
-        blacklist: 'чёрный список'
+      core:
+        enum:
+          format:
+            thousands_separator:
+              comma: ','
+              none: 'не нужен'
+              period: '.'
+              thin_space: 'узкий пробел'
+          position:
+            after: 'after'
+            before: 'before'

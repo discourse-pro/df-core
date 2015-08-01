@@ -1,6 +1,6 @@
-module ::Df::Paypal
+module ::Df::Core::Enum::Currency
 	require_dependency 'enum_site_setting'
-	class Currencies < EnumSiteSetting
+	class Paypal < EnumSiteSetting
 		def self.valid_value?(val)
 			val.blank? or values.any? { |v| v[:value] == val.to_s }
 		end

@@ -1,5 +1,25 @@
 df_core:
   «Discourse_PRO»_Currency:
-    enum: '::Df::Paypal::Currencies'
+    enum: '::Df::Core::Enum::Currency::Paypal'
     default: 'USD'
+    client: true
+  «Currency»_Symbol:
+    default: '$'
+    client: true
+  «Currency»_Symbol_Position:
+    enum: '::Df::Core::Enum:Position::BeforeAfter'
+    default: 'before'
+    client: true
+  «Currency»_Delimit_Symbol_from_Amount?:
+    default: false
+    client: true
+  «Currency»_Number_of_Decimals:
+    default: 0
+    client: true
+  «Currency»_Decimal_Separator:
+    default: '.'
+    client: true
+  «Currency»_Thousands_Separator:
+    enum: '::Df::Core::Enum:Format::ThousandsSeparator'
+    default: 'thin_space'
     client: true

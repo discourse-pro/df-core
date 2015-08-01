@@ -1,3 +1,9 @@
 en:
   site_settings:
+    «Currency»_Decimal_Separator: '<a href="https://en.wikipedia.org/wiki/Decimal_mark">what is it?</a>'
+    «Currency»_Delimit_Symbol_from_Amount?: 'If set to «yes», the system will delimit a currency symbol from a curency amount with the <a href="https://en.wikipedia.org/wiki/Thin_space">thin space</a>.'
+    «Currency»_Number_of_Decimals: 'Number of digits in an amount fractional part to show.'
+    «Currency»_Symbol: 'The popular symbols for your convenience (use copy/paste): <b>€</b>, <b>£</b>, <b>₽</b>, <b>¥</b>.'
+    «Currency»_Symbol_Position: ''
+    «Currency»_Thousands_Separator: ''
     «Discourse_PRO»_Currency: "The default currency for the <a href='https://discourse.pro'>discourse.pro</a> plugins.<br/>It is used for prices and payment transactions.<br/>For now, it must be one of <a href='https://developer.paypal.com/docs/classic/api/currency_codes/'>the currencies supported by PayPal</a>."

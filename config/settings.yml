@@ -7,7 +7,7 @@ df_core:
     default: '$'
     client: true
   «Currency»_Symbol_Position:
-    enum: '::Df::Core::Enum:Position::BeforeAfter'
+    enum: '::Df::Core::Enum::Position::BeforeAfter'
     default: 'before'
     client: true
   «Currency»_Delimit_Symbol_from_Amount?:
@@ -20,6 +20,6 @@ df_core:
     default: '.'
     client: true
   «Currency»_Thousands_Separator:
-    enum: '::Df::Core::Enum:Format::ThousandsSeparator'
+    enum: '::Df::Core::Enum::Format::ThousandsSeparator'
     default: 'thin_space'
     client: true

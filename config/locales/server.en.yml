@@ -1,7 +1,7 @@
 en:
   site_settings:
     «Currency»_Decimal_Separator: '<a href="https://en.wikipedia.org/wiki/Decimal_mark">what is it?</a>'
-    «Currency»_Delimit_Symbol_from_Amount?: 'If set to «yes», the system will delimit a currency symbol from a curency amount with the <a href="https://en.wikipedia.org/wiki/Thin_space">thin space</a>.'
+    «Currency»_Delimit_Symbol_from_Amount?: 'If enabled, the system will delimit a currency symbol from a curency amount with the <a href="https://en.wikipedia.org/wiki/Thin_space">thin space</a>.'
     «Currency»_Number_of_Decimals: 'Number of digits in an amount fractional part to show.'
     «Currency»_Symbol: 'The popular symbols for your convenience (use copy/paste): <b>€</b>, <b>£</b>, <b>₽</b>, <b>¥</b>.'
     «Currency»_Symbol_Position: ''

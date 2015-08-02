@@ -8,8 +8,8 @@ module ::Df::Core::Enum::Format
 			@values ||= [
 				{name: 'df.core.enum.format.thousands_separator.none', value: 'none'},
 				{name: 'df.core.enum.format.thousands_separator.thin_space', value: 'thin_space'},
-				{name: 'df.core.enum.format.thousands_separator.comma', value: 'comma'},
-				{name: 'df.core.enum.format.thousands_separator.period', value: 'period'}
+				{name: 'df.core.enum.format.thousands_separator.comma', value: ','},
+				{name: 'df.core.enum.format.thousands_separator.period', value: '.'}
 			]
 		end
 		def self.translate_names?

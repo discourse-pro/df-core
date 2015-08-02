@@ -1,3 +1,8 @@
+/**
+ * 2015-08-02
+ * @link https://github.com/alexei/sprintf.js
+ * Версия 1.0.3
+ */
 var re = {
     not_string: /[^s]/,
     number: /[diefg]/,

@@ -1,3 +1,8 @@
+/**
+ * Форматы валют:
+ * @link http://www.thefinancials.com/Default.aspx?SubSectionID=curformat
+ * @link http://ux.stackexchange.com/questions/9105/international-currency-formatting-guidelines-currency-codes
+ */
 import {number_format} from '../lib/string/number_format';
 import {sprintf} from '../lib/string/sprintf';
 import registerUnbound from 'discourse/helpers/register-unbound';

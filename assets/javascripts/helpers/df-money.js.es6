@@ -3,8 +3,7 @@
  * @link http://www.thefinancials.com/Default.aspx?SubSectionID=curformat
  * @link http://ux.stackexchange.com/questions/9105/international-currency-formatting-guidelines-currency-codes
  */
-import {number_format} from '../lib/string/number_format';
-import {sprintf} from '../lib/string/sprintf';
+import df from '../df';
 import registerUnbound from 'discourse/helpers/register-unbound';
 registerUnbound('df-money', function(amount, params) {
 	const CONTENTS = '{contents}';
@@ -23,7 +22,7 @@ registerUnbound('df-money', function(amount, params) {
 	var amountS = "<span class='amount'>" + CONTENTS + "</span>";
 	var currencyS = "<span class='currency'>" + CONTENTS + "</span>";
 	var moneyS = "<span class='df-money'>" + CONTENTS + "</span>";
-	amountS = amountS.replace(CONTENTS, number_format(
+	amountS = amountS.replace(CONTENTS, df.t.number_format(
 		amount, numberOfDecimals, decimalSeparator, thousandsSeparator
 	));
 	currencyS = currencyS.replace(CONTENTS, symbol);

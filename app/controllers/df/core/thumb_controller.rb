@@ -22,7 +22,7 @@ module ::Df::Core
 				end
 				contentType = thumbnail.extension
 				# Remove leading dot
-				# http://stackoverflow.com/a/3614592/254475
+				# http://stackoverflow.com/a/3614592
 				contentType[0] = ''
 				if 'jpg' == contentType
 					contentType = 'jpeg'

@@ -10,7 +10,7 @@ export default Ember.Component.extend({
 	 * Discourse expects the components's template at
 	 * plugins/df-core/assets/javascripts/discourse/templates/components/df-user-groups.hbs
 	 * Until I know it I used to specify template location explicitly:
-	 * @link http://stackoverflow.com/a/24271614/254475
+	 * @link http://stackoverflow.com/a/24271614
 	 * ,layoutName: 'javascripts/admin/templates/components/df-user-groups'
 	 * Now I save the explicit method for history only. May be it will be useful sometimes.
 	 */

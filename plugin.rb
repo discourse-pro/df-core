@@ -54,7 +54,7 @@ Paypal::NVP::Request.module_eval do
 	end
 	alias_method :core__request, :request
 	def request(method, params = {})
-		# http://stackoverflow.com/a/4686157/254475
+		# http://stackoverflow.com/a/4686157
 		if :SetExpressCheckout == method
 			# 2015-07-10
 			# Это поле обязательно для заполнение, однако гем его почему-то не заполняет.

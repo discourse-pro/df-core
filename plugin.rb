@@ -69,6 +69,20 @@ Paypal::NVP::Request.module_eval do
 		core__request method, params
 	end
 end
+require 'site_setting_extension'
+SiteSettingExtension.module_eval do
+	alias_method :core__types, :types
+	def types
+		result = @types
+		if not result
+			result = core__types
+			result[:df_editor] = result.length + 1;
+			result[:paypal_buttons] = result.length + 1;
+			result[:paid_membership_plans] = result.length + 1;
+		end
+		return result
+	end
+end
 after_initialize do
 	# 2015-07-19
 	# Добавляем поддержку логирования при выполнении JavaScript на сервере
@@ -88,22 +102,6 @@ after_initialize do
 			end
 		end
 	end
-end
-require 'site_setting_extension'
-SiteSettingExtension.module_eval do
-	alias_method :core__types, :types
-	def types
-		result = @types
-		if not result
-			result = core__types
-			result[:df_editor] = result.length + 1;
-			result[:paypal_buttons] = result.length + 1;
-			result[:paid_membership_plans] = result.length + 1;
-		end
-		return result
-	end
-end
-after_initialize do
 	module ::Df::Core
 		class Engine < ::Rails::Engine
 			engine_name 'df_core'
@@ -115,5 +113,5 @@ after_initialize do
 	end
 	Discourse::Application.routes.append do
 		mount ::Df::Core::Engine, at: '/df/core'
-	end
+	end	
 end

@@ -77,6 +77,9 @@ SiteSettingExtension.module_eval do
 		if not result
 			result = core__types
 			result[:df_editor] = result.length + 1;
+			# 2015-08-27
+			# textarea без редактора
+			result[:df_textarea] = result.length + 1;
 			result[:paypal_buttons] = result.length + 1;
 			result[:paid_membership_plans] = result.length + 1;
 		end

@@ -7,7 +7,7 @@ export default {name: 'df-core-admin', initialize() {
 		 * Обратите внимание, что в родительском классе
 		 * присутствует свой обработчик «didInsertElement»,
 		 * однако он никоим образом не конфликтует с нашим,
-		 * потому что функия-обработчик называется по-другому.
+		 * потому что функция-обработчик называется по-другому.
 		 *
 		 * Наша задача: назначить индивидуальный класс CSS
 		 * родительскому контейнеру компонента: .row.setting
@@ -20,17 +20,24 @@ export default {name: 'df-core-admin', initialize() {
 				this.$().closest('.row.setting').addClass(this.get('setting.setting'));
 			}
 		}.on('didInsertElement')
-		,partialType: function() {
+		,componentType: function() {
 			var type = this.get('setting.type');
 			return -1 < myTypes.indexOf(type) ? type : this._super();
 		}.property('setting.type')
+		/**
+		 * 2015-08-27
+		 * https://meta.discourse.org/t/32572
+		 */
+		,typeClass: function() {
+			return this.get('componentType').replace(/_/g, '-');
+		}.property('componentType')
 		/**
 		 * 2015-07-05
 		 * Позволяет нам вычленять имя плагина из имени опции и по-разному отображать их.
 		 * @see plugins/df-core/assets/stylesheets/admin/_settings.scss
 		 */
 		,settingName: function() {
-			var result = this._super();
+			const result = this._super();
 			return (
 				-1 === result.indexOf('»')
 				? result

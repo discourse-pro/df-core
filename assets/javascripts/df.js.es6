@@ -1,7 +1,8 @@
 import dom from './lib/dom';
 import t from './lib/t';
 export default {
-	dom: dom,
+	d(variable) {return 'undefined' !== typeof variable;}
+	,dom: dom,
 	/**
 	 * @param {String} href
  	 */
@@ -10,4 +11,5 @@ export default {
 	     $('head').append(cssLink);
 	 }
 	,t: t
+	,u(variable) {return !this.d(variable);}
 }

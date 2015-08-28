@@ -7,6 +7,8 @@ export default Ember.Component.extend({
 		this.set('buttonBarId', 'wmd-button-bar' + this._suffix);
 		this.set('textareaId', 'wmd-input' + this._suffix);
 		this.set('previewId', 'wmd-preview' + this._suffix);
+		var rows = this.get('rows');
+		this.set('rows', rows ? rows : 2);
 	}.on('init')
 	,_initializeWmd: function() {
 		var $textarea = $('textarea', this.$());

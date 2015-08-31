@@ -77,6 +77,9 @@ SiteSettingExtension.module_eval do
 		if not result
 			result = core__types
 			result[:df_editor] = result.length + 1;
+			# 2015-08-31
+			# input type=password
+			result[:df_password] = result.length + 1;
 			# 2015-08-27
 			# textarea без редактора
 			result[:df_textarea] = result.length + 1;

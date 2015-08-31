@@ -1,7 +1,9 @@
 import SiteSetting from 'admin/components/site-setting';
 export default {name: 'df-core-admin', initialize() {
-	/** @type {String} */
-	const myTypes = ['df_editor', 'df_textarea', 'paid_membership_plans', 'paypal_buttons'];
+	/** @type {String[]} */
+	const myTypes = [
+		'df_editor', 'df_password', 'df_textarea', 'paid_membership_plans', 'paypal_buttons'
+	];
 	SiteSetting.reopen({
 		/**
 		 * 2015-07-06

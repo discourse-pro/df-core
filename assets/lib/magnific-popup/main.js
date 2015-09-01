@@ -530,9 +530,15 @@ MagnificPopup.prototype = {
 		_mfpTrigger(CHANGE_EVENT, item);
 		_prevContentType = item.type;
 
-		// Append container back after its content changed
-		mfp.container.prepend(mfp.contentContainer);
-
+		// 2015-09-01
+		const $newArrowLeft = mfp.container.children('.df-new-arrow-left:first');
+		if (!$newArrowLeft.length) {
+			// Append container back after its content changed
+			mfp.container.prepend(mfp.contentContainer);
+		}
+		else {
+			$newArrowLeft.after(mfp.contentContainer);
+		}
 		_mfpTrigger('AfterChange');
 	},
 
@@ -1785,6 +1791,23 @@ $.dfMagnificPopup.registerModule('gallery', {
 					}
 
 					mfp.container.append(arrowLeft.add(arrowRight));
+					//const $newArrowLeft = $('<div class="df-new-arrow df-new-arrow-left">').html('LEFT!');
+					//const $newArrowRight = $('<div class="df-new-arrow df-new-arrow-right">').html('RIGHT!');
+					//mfp.container.prepend($newArrowLeft);
+					//mfp.container.append($newArrowRight);
+					const $newArrowRight = arrowRight.clone(true);
+					$newArrowRight.removeClass('df-mfp-arrow');
+					$newArrowRight.removeClass('df-mfp-arrow-right');
+					$newArrowRight.addClass('df-new-arrow');
+					$newArrowRight.addClass('df-new-arrow-right');
+					mfp.container.append($newArrowRight);
+
+					const $newArrowLeft = arrowLeft.clone(true);
+					$newArrowLeft.removeClass('df-mfp-arrow');
+					$newArrowLeft.removeClass('df-mfp-arrow-left');
+					$newArrowLeft.addClass('df-new-arrow');
+					$newArrowLeft.addClass('df-new-arrow-left');
+					mfp.container.prepend($newArrowLeft);
 				}
 			});
 

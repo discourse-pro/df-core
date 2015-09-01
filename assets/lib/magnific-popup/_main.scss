@@ -247,6 +247,9 @@ $df-mfp-use-visuallyhidden: false !default;
 	.df-mfp-preloader {
 		display: none;
 	}
+	.df-new-arrow {
+		display: inline-block;
+	}
 }
 
 // Hide content when it was not loaded

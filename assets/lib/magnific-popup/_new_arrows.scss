@@ -1,5 +1,6 @@
 @if $df-mfp-include-arrows {
 	.df-new-arrow {
+		display: none;
 		-webkit-user-select: none;
 		-moz-user-select: none;
 		user-select: none;
@@ -14,7 +15,6 @@
 		z-index: $df-mfp-z-index-base + 6;
 		-webkit-box-shadow: none;
 		box-shadow: none;
-		display: inline-block;
 		opacity: $df-mfp-controls-opacity;
 		@if $df-mfp-IE7support {
 			filter: unquote("alpha(opacity=#{$df-mfp-controls-opacity*100})");

@@ -1790,11 +1790,8 @@ $.dfMagnificPopup.registerModule('gallery', {
 						_getEl('a', arrowRight[0], false, true);
 					}
 
-					mfp.container.append(arrowLeft.add(arrowRight));
-					//const $newArrowLeft = $('<div class="df-new-arrow df-new-arrow-left">').html('LEFT!');
-					//const $newArrowRight = $('<div class="df-new-arrow df-new-arrow-right">').html('RIGHT!');
-					//mfp.container.prepend($newArrowLeft);
-					//mfp.container.append($newArrowRight);
+					// 2015-09-01
+					//mfp.container.append(arrowLeft.add(arrowRight));
 					const $newArrowRight = arrowRight.clone(true);
 					$newArrowRight.removeClass('df-mfp-arrow');
 					$newArrowRight.removeClass('df-mfp-arrow-right');

@@ -31,9 +31,10 @@ var CLOSE_EVENT = 'Close',
 	CHANGE_EVENT = 'Change',
 	NS = 'mfp',
 	EVENT_NS = '.' + NS,
-	READY_CLASS = 'mfp-ready',
-	REMOVING_CLASS = 'mfp-removing',
-	PREVENT_CLOSE_CLASS = 'mfp-prevent-close';
+	TEMPLATE_NS = '.df-mfp',
+	READY_CLASS = 'df-mfp-ready',
+	REMOVING_CLASS = 'df-mfp-removing',
+	PREVENT_CLOSE_CLASS = 'df-mfp-prevent-close';
 
 
 /**
@@ -59,7 +60,7 @@ var _mfpOn = function(name, f) {
 	},
 	_getEl = function(className, appendTo, html, raw) {
 		var el = document.createElement('div');
-		el.className = 'mfp-'+className;
+		el.className = 'df-mfp-'+className;
 		if(html) {
 			el.innerHTML = html;
 		}
@@ -257,12 +258,12 @@ MagnificPopup.prototype = {
 				_mfpOn(MARKUP_PARSE_EVENT, function(e, template, values, item) {
 					values.close_replaceWith = _getCloseBtn(item.type);
 				});
-				_wrapClasses += ' mfp-close-btn-in';
+				_wrapClasses += ' df-mfp-close-btn-in';
 			}
 		}
 
 		if(mfp.st.alignTop) {
-			_wrapClasses += ' mfp-align-top';
+			_wrapClasses += ' df-mfp-align-top';
 		}
 
 
@@ -303,7 +304,7 @@ MagnificPopup.prototype = {
 
 
 		if(!mfp.st.closeOnContentClick) {
-			_wrapClasses += ' mfp-auto-cursor';
+			_wrapClasses += ' df-mfp-auto-cursor';
 		}
 
 		if(_wrapClasses)
@@ -338,7 +339,7 @@ MagnificPopup.prototype = {
 
 		var classesToadd = mfp.st.mainClass;
 		if(mfp.isIE7) {
-			classesToadd += ' mfp-ie7';
+			classesToadd += ' df-mfp-ie7';
 		}
 		if(classesToadd) {
 			mfp._addClassToMFP( classesToadd );
@@ -432,9 +433,9 @@ MagnificPopup.prototype = {
 		mfp.ev.off(EVENT_NS);
 
 		// clean up DOM elements that aren't removed
-		mfp.wrap.attr('class', 'mfp-wrap').removeAttr('style');
-		mfp.bgOverlay.attr('class', 'mfp-bg');
-		mfp.container.attr('class', 'mfp-container');
+		mfp.wrap.attr('class', 'df-mfp-wrap').removeAttr('style');
+		mfp.bgOverlay.attr('class', 'df-mfp-bg');
+		mfp.container.attr('class', 'df-mfp-container');
 
 		// remove close button from target element
 		if(mfp.st.showCloseBtn &&
@@ -518,7 +519,7 @@ MagnificPopup.prototype = {
 		}
 
 		if(_prevContentType && _prevContentType !== item.type) {
-			mfp.container.removeClass('mfp-'+_prevContentType+'-holder');
+			mfp.container.removeClass('df-mfp-'+_prevContentType+'-holder');
 		}
 
 		var newContent = mfp['get' + type.charAt(0).toUpperCase() + type.slice(1)](item, mfp.currTemplate[type]);
@@ -546,7 +547,7 @@ MagnificPopup.prototype = {
 			if(mfp.st.showCloseBtn && mfp.st.closeBtnInside &&
 				mfp.currTemplate[type] === true) {
 				// if there is no markup, we just append close button element inside
-				if(!mfp.content.find('.mfp-close').length) {
+				if(!mfp.content.find('.df-mfp-close').length) {
 					mfp.content.append(_getCloseBtn());
 				}
 			} else {
@@ -557,7 +558,7 @@ MagnificPopup.prototype = {
 		}
 
 		_mfpTrigger(BEFORE_APPEND_EVENT);
-		mfp.container.addClass('mfp-'+type+'-holder');
+		mfp.container.addClass('df-mfp-'+type+'-holder');
 
 		mfp.contentContainer.append(mfp.content);
 	},
@@ -585,7 +586,7 @@ MagnificPopup.prototype = {
 
 			// check for 'mfp-TYPE' class
 			for(var i = 0; i < types.length; i++) {
-				if( item.el.hasClass('mfp-'+types[i]) ) {
+				if( item.el.hasClass('df-mfp-'+types[i]) ) {
 					type = types[i];
 					break;
 				}
@@ -683,7 +684,7 @@ MagnificPopup.prototype = {
 
 		if(mfp.preloader) {
 			if(_prevStatus !== status) {
-				mfp.container.removeClass('mfp-s-'+_prevStatus);
+				mfp.container.removeClass('df-mfp-s-'+_prevStatus);
 			}
 
 			if(!text && status === 'loading') {
@@ -706,7 +707,7 @@ MagnificPopup.prototype = {
 				e.stopImmediatePropagation();
 			});
 
-			mfp.container.addClass('mfp-s-'+status);
+			mfp.container.addClass('df-mfp-s-'+status);
 			_prevStatus = status;
 		}
 	},
@@ -731,7 +732,7 @@ MagnificPopup.prototype = {
 		} else {
 
 			// We close the popup if click is on close button or on preloader. Or if there is no content.
-			if(!mfp.content || $(target).hasClass('mfp-close') || (mfp.preloader && target === mfp.preloader[0]) ) {
+			if(!mfp.content || $(target).hasClass('df-mfp-close') || (mfp.preloader && target === mfp.preloader[0]) ) {
 				return true;
 			}
 
@@ -783,7 +784,7 @@ MagnificPopup.prototype = {
 			}
 			arr = key.split('_');
 			if(arr.length > 1) {
-				var el = template.find(EVENT_NS + '-'+arr[0]);
+				var el = template.find(TEMPLATE_NS + '-'+arr[0]);
 
 				if(el.length > 0) {
 					var attr = arr[1];
@@ -803,7 +804,7 @@ MagnificPopup.prototype = {
 				}
 
 			} else {
-				template.find(EVENT_NS + '-'+key).html(value);
+				template.find(TEMPLATE_NS + '-'+key).html(value);
 			}
 		});
 	},
@@ -901,7 +902,7 @@ $.dfMagnificPopup = {
 
 		overflowY: 'auto',
 
-		closeMarkup: '<button title="%title%" type="button" class="mfp-close">&times;</button>',
+		closeMarkup: '<button title="%title%" type="button" class="df-mfp-close">&times;</button>',
 
 		tClose: 'Close (Esc)',
 
@@ -998,7 +999,7 @@ var INLINE_NS = 'inline',
 
 $.dfMagnificPopup.registerModule(INLINE_NS, {
 	options: {
-		hiddenClass: 'hide', // will be appended with `mfp-` prefix
+		hiddenClass: 'hide', // will be appended with `df-mfp-` prefix
 		markup: '',
 		tNotFound: 'Content not found'
 	},
@@ -1028,7 +1029,7 @@ $.dfMagnificPopup.registerModule(INLINE_NS, {
 						if(!_inlinePlaceholder) {
 							_hiddenClass = inlineSt.hiddenClass;
 							_inlinePlaceholder = _getEl(_hiddenClass);
-							_hiddenClass = 'mfp-'+_hiddenClass;
+							_hiddenClass = 'df-mfp-'+_hiddenClass;
 						}
 						// replace target inline element with placeholder
 						_lastInlineElement = el.after(_inlinePlaceholder).detach().removeClass(_hiddenClass);
@@ -1072,7 +1073,7 @@ $.dfMagnificPopup.registerModule(AJAX_NS, {
 
 	options: {
 		settings: null,
-		cursor: 'mfp-ajax-cur',
+		cursor: 'df-mfp-ajax-cur',
 		tError: '<a href="%url%">The content</a> could not be loaded.'
 	},
 
@@ -1161,19 +1162,19 @@ var _imgInterval,
 $.dfMagnificPopup.registerModule('image', {
 
 	options: {
-		markup: '<div class="mfp-figure">'+
-					'<div class="mfp-close"></div>'+
+		markup: '<div class="df-mfp-figure">'+
+					'<div class="df-mfp-close"></div>'+
 					'<figure>'+
-						'<div class="mfp-img"></div>'+
+						'<div class="df-mfp-img"></div>'+
 						'<figcaption>'+
-							'<div class="mfp-bottom-bar">'+
-								'<div class="mfp-title"></div>'+
-								'<div class="mfp-counter"></div>'+
+							'<div class="df-mfp-bottom-bar">'+
+								'<div class="df-mfp-title"></div>'+
+								'<div class="df-mfp-counter"></div>'+
 							'</div>'+
 						'</figcaption>'+
 					'</figure>'+
 				'</div>',
-		cursor: 'mfp-zoom-out-cur',
+		cursor: 'df-mfp-zoom-out-cur',
 		titleSrc: 'title',
 		verticalFit: true,
 		tError: '<a href="%url%">The image</a> could not be loaded.'
@@ -1232,7 +1233,7 @@ $.dfMagnificPopup.registerModule('image', {
 
 				if(item.imgHidden) {
 					if(mfp.content)
-						mfp.content.removeClass('mfp-loading');
+						mfp.content.removeClass('df-mfp-loading');
 
 					item.imgHidden = false;
 				}
@@ -1328,10 +1329,10 @@ $.dfMagnificPopup.registerModule('image', {
 				imgSt = mfp.st.image;
 
 
-			var el = template.find('.mfp-img');
+			var el = template.find('.df-mfp-img');
 			if(el.length) {
 				var img = document.createElement('img');
-				img.className = 'mfp-img';
+				img.className = 'df-mfp-img';
 				if(item.el && item.el.find('img').length) {
 					img.alt = item.el.find('img').attr('alt');
 				}
@@ -1363,10 +1364,10 @@ $.dfMagnificPopup.registerModule('image', {
 				if(_imgInterval) clearInterval(_imgInterval);
 
 				if(item.loadError) {
-					template.addClass('mfp-loading');
+					template.addClass('df-mfp-loading');
 					mfp.updateStatus('error', imgSt.tError.replace('%url%', item.src) );
 				} else {
-					template.removeClass('mfp-loading');
+					template.removeClass('df-mfp-loading');
 					mfp.updateStatus('ready');
 				}
 				return template;
@@ -1377,7 +1378,7 @@ $.dfMagnificPopup.registerModule('image', {
 
 			if(!item.hasSize) {
 				item.imgHidden = true;
-				template.addClass('mfp-loading');
+				template.addClass('df-mfp-loading');
 				mfp.findImageSize(item);
 			}
 
@@ -1423,7 +1424,7 @@ $.dfMagnificPopup.registerModule('zoom', {
 
 			var duration = zoomSt.duration,
 				getElToAnimate = function(image) {
-					var newImg = image.clone().removeAttr('style').removeAttr('class').addClass('mfp-animated-image'),
+					var newImg = image.clone().removeAttr('style').removeAttr('class').addClass('df-mfp-animated-image'),
 						transition = 'all '+(zoomSt.duration/1000)+'s ' + zoomSt.easing,
 						cssObj = {
 							position: 'fixed',
@@ -1604,9 +1605,9 @@ var IFRAME_NS = 'iframe',
 $.dfMagnificPopup.registerModule(IFRAME_NS, {
 
 	options: {
-		markup: '<div class="mfp-iframe-scaler">'+
-					'<div class="mfp-close"></div>'+
-					'<iframe class="mfp-iframe" src="//about:blank" frameborder="0" allowfullscreen></iframe>'+
+		markup: '<div class="df-mfp-iframe-scaler">'+
+					'<div class="df-mfp-close"></div>'+
+					'<iframe class="df-mfp-iframe" src="//about:blank" frameborder="0" allowfullscreen></iframe>'+
 				'</div>',
 
 		srcAction: 'iframe_src',
@@ -1707,7 +1708,7 @@ $.dfMagnificPopup.registerModule('gallery', {
 
 	options: {
 		enabled: false,
-		arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
+		arrowMarkup: '<button title="%title%" type="button" class="df-mfp-arrow df-mfp-arrow-%dir%"></button>',
 		preload: [0,2],
 		navigateByImgClick: true,
 		arrows: true,
@@ -1721,19 +1722,19 @@ $.dfMagnificPopup.registerModule('gallery', {
 		initGallery: function() {
 
 			var gSt = mfp.st.gallery,
-				ns = '.mfp-gallery',
+				ns = '.df-mfp-gallery',
 				supportsFastClick = Boolean($.fn.mfpFastClick);
 
 			mfp.direction = true; // true - next, false - prev
 
 			if(!gSt || !gSt.enabled ) return false;
 
-			_wrapClasses += ' mfp-gallery';
+			_wrapClasses += ' df-mfp-gallery';
 
 			_mfpOn(OPEN_EVENT+ns, function() {
 
 				if(gSt.navigateByImgClick) {
-					mfp.wrap.on('click'+ns, '.mfp-img', function() {
+					mfp.wrap.on('click'+ns, '.df-mfp-img', function() {
 						if(mfp.items.length > 1) {
 							mfp.next();
 							return false;
@@ -1775,7 +1776,7 @@ $.dfMagnificPopup.registerModule('gallery', {
 						mfp.next();
 					});
 
-					// Polyfill for :before and :after (adds elements with classes mfp-a and mfp-b)
+					// Polyfill for :before and :after (adds elements with classes df-mfp-a and df-mfp-b)
 					if(mfp.isIE7) {
 						_getEl('b', arrowLeft[0], false, true);
 						_getEl('a', arrowLeft[0], false, true);
@@ -1851,7 +1852,7 @@ $.dfMagnificPopup.registerModule('gallery', {
 			_mfpTrigger('LazyLoad', item);
 
 			if(item.type === 'image') {
-				item.img = $('<img class="mfp-img" />').on('load.mfploader', function() {
+				item.img = $('<img class="df-mfp-img" />').on('load.mfploader', function() {
 					item.hasSize = true;
 				}).on('error.mfploader', function() {
 					item.hasSize = true;

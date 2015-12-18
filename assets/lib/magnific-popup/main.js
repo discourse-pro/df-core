@@ -80,7 +80,6 @@ var _mfpOn = function(name, f) {
 		if(mfp.st.callbacks) {
 			// converts "mfpEventName" to "eventName" callback and triggers it if it's present
 			e = e.charAt(0).toLowerCase() + e.slice(1);
-			//debugger;
 			if(mfp.st.callbacks[e]) {
 				mfp.st.callbacks[e].apply(mfp, $.isArray(data) ? data : [data]);
 			}
@@ -445,7 +444,7 @@ MagnificPopup.prototype = {
 		}
 
 
-		if(mfp._lastFocusedEl) {
+		if(mfp.st.autoFocusLast && mfp._lastFocusedEl) {
 			$(mfp._lastFocusedEl).focus(); // put tab focus back
 		}
 		mfp.currItem = null;
@@ -531,7 +530,9 @@ MagnificPopup.prototype = {
 		_prevContentType = item.type;
 
 		// 2015-09-01
-		const $newArrowLeft = mfp.container.children('.df-new-arrow-left:first');
+		// 2015-12-18
+		// const не работает в IE 10.
+		var $newArrowLeft = mfp.container.children('.df-new-arrow-left:first');
 		if (!$newArrowLeft.length) {
 			// Append container back after its content changed
 			mfp.container.prepend(mfp.contentContainer);
@@ -647,7 +648,7 @@ MagnificPopup.prototype = {
 		var midClick = options.midClick !== undefined ? options.midClick : $.dfMagnificPopup.defaults.midClick;
 
 
-		if(!midClick && ( e.which === 2 || e.ctrlKey || e.metaKey ) ) {
+		if(!midClick && ( e.which === 2 || e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) ) {
 			return;
 		}
 
@@ -908,11 +909,13 @@ $.dfMagnificPopup = {
 
 		overflowY: 'auto',
 
-		closeMarkup: '<button title="%title%" type="button" class="df-mfp-close">&times;</button>',
+		closeMarkup: '<button title="%title%" type="button" class="df-mfp-close">&#215;</button>',
 
 		tClose: 'Close (Esc)',
 
-		tLoading: 'Loading...'
+		tLoading: 'Loading...',
+
+		autoFocusLast: true
 
 	}
 };
@@ -1792,14 +1795,16 @@ $.dfMagnificPopup.registerModule('gallery', {
 
 					// 2015-09-01
 					//mfp.container.append(arrowLeft.add(arrowRight));
-					const $newArrowRight = arrowRight.clone(true);
+					// 2015-12-18
+					// const не работает в IE 10.
+					var $newArrowRight = arrowRight.clone(true);
 					$newArrowRight.removeClass('df-mfp-arrow');
 					$newArrowRight.removeClass('df-mfp-arrow-right');
 					$newArrowRight.addClass('df-new-arrow');
 					$newArrowRight.addClass('df-new-arrow-right');
 					mfp.container.append($newArrowRight);
 
-					const $newArrowLeft = arrowLeft.clone(true);
+					var $newArrowLeft = arrowLeft.clone(true);
 					$newArrowLeft.removeClass('df-mfp-arrow');
 					$newArrowLeft.removeClass('df-mfp-arrow-left');
 					$newArrowLeft.addClass('df-new-arrow');

@@ -90,6 +90,7 @@ SiteSettingExtension.module_eval do
 	end
 end
 after_initialize do
+=begin
 	# 2015-07-19
 	# Добавляем поддержку логирования при выполнении JavaScript на сервере
 	require 'pretty_text'
@@ -108,6 +109,7 @@ after_initialize do
 			end
 		end
 	end
+=end	
 	module ::Df::Core
 		class Engine < ::Rails::Engine
 			engine_name 'df_core'

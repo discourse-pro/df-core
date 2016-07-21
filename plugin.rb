@@ -90,26 +90,6 @@ SiteSettingExtension.module_eval do
 	end
 end
 after_initialize do
-=begin
-	# 2015-07-19
-	# Добавляем поддержку логирования при выполнении JavaScript на сервере
-	require 'pretty_text'
-	PrettyText.module_eval do
-		class << self
-			alias_method :_decorate_context, :decorate_context
-			def decorate_context(context)
-				# https://github.com/cucumber/gherkin/blob/4d6c049cc75d154e1cf660794a078570e8aa7849/lib/gherkin/native/therubyracer.rb#L26-L30
-				context['console'] = STDOUT
-				def STDOUT.log(*a)
-					message = sprintf(*a.map(&:to_s))
-					puts message
-					Airbrake.notify(:error_message => message)
-				end
-				_decorate_context context
-			end
-		end
-	end
-=end	
 	module ::Df::Core
 		class Engine < ::Rails::Engine
 			engine_name 'df_core'

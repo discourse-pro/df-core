@@ -1,11 +1,10 @@
 # name: df-core
 # about: A common functionality of my Discourse plugins.
-# version: 1.0.0
+# version: 1.1.0
 # authors: Dmitry Fedyuk
 # url: https://discourse.pro
 #register_asset 'javascripts/lib/sprintf.js'
 register_asset 'javascripts/admin.js', :admin
-register_asset 'javascripts/admin/editor.js', :admin
 register_asset 'lib/magnific-popup/main.js'
 register_asset 'stylesheets/main.scss'
 pluginAppPath = "#{Rails.root}/plugins/df-core/app/"

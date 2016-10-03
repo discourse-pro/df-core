@@ -4,8 +4,7 @@
  * @link http://ux.stackexchange.com/questions/9105/international-currency-formatting-guidelines-currency-codes
  */
 import df from '../df';
-/*
-import registerUnbound from 'discourse/helpers/register-unbound';
+import {registerUnbound} from 'discourse-common/lib/helpers';
 registerUnbound('df-money', function(amount, params) {
 	const CONTENTS = '{contents}';
 	const ss = Discourse.SiteSettings;
@@ -34,4 +33,4 @@ registerUnbound('df-money', function(amount, params) {
 	}
 	moneyS = moneyS.replace(CONTENTS, moneyContentsA.join(''));
 	return new Handlebars.SafeString(moneyS);
-});     */
+});

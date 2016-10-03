@@ -1,3 +1,4 @@
+import Group from 'discourse/models/group';
 /**
  * Inspired by app/assets/javascripts/admin/components/admin-group-selector.js.es6
  * (which is not convenient for me because it does not allow to remove system groups
@@ -16,7 +17,7 @@ export default Ember.Component.extend({
 	 */
 	,_init: function() {
 		const _this = this;
-		Discourse.Group.findAll().then(function(availableUserGroups) {
+		Group.findAll().then(function(availableUserGroups) {
 			_this.set('allGroups', availableUserGroups);
 			_this.$('input').select2({
 				multiple: true

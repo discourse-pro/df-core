@@ -1,6 +1,6 @@
 # name: df-core
 # about: A common functionality of my Discourse plugins.
-# version: 1.1.0
+# version: 1.1.1
 # authors: Dmitry Fedyuk
 # url: https://discourse.pro
 #register_asset 'javascripts/lib/sprintf.js'
@@ -23,7 +23,12 @@ Airbrake.configure do |config|
   config.development_environments = []
 end
 gem 'attr_required', '1.0.0'
-gem 'paypal-express', '0.8.1', {require_name: 'paypal'}
+# 2016-12-12
+# Оригинальный https://github.com/nov/paypal-express перестал работать:
+# https://github.com/nov/paypal-express/issues/99
+# Мой гем: https://rubygems.org/gems/dfg-paypal
+# https://github.com/discourse-pro/dfg-paypal
+gem 'dfg-paypal', '0.8.2', {require_name: 'paypal'}
 Paypal::Util.module_eval do
 =begin
 	2015-07-10

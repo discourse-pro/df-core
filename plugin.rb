@@ -15,12 +15,12 @@ spec_file = "#{Rails.root}/plugins/df-core/gems/2.2.2/specifications/airbrake-4.
 spec = Gem::Specification.load spec_file
 spec.activate
 require 'airbrake'
-Airbrake.configure do |config|
-  config.api_key = 'c07658a7417f795847b2280bc2fd7a79'
-  config.host    = 'log.dmitry-fedyuk.com'
-  config.port    = 80
-  config.secure  = config.port == 443
-  config.development_environments = []
+Airbrake.configure do |c|
+  c.api_key = 'c07658a7417f795847b2280bc2fd7a79'
+  c.development_environments = []
+  c.host = 'log.dmitry-fedyuk.com'
+  c.port = 80
+  c.secure  = false
 end
 gem 'attr_required', '1.0.0'
 # 2016-12-12

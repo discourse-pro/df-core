@@ -9,14 +9,13 @@ register_asset 'lib/magnific-popup/main.js'
 register_asset 'stylesheets/main.scss'
 pluginAppPath = "#{Rails.root}/plugins/df-core/app/"
 Discourse::Application.config.autoload_paths += Dir["#{pluginAppPath}models", "#{pluginAppPath}controllers"]
-# Из коробки airbrake не устанавливается.
-# Поэтому чуточку подправил его и устанавливаю локальную версию.
-#spec = Gem::Specification.load \
-#	"#{Rails.root}/plugins/df-core/gems/2.2.2/specifications/airbrake-4.3.0.gemspec"
-#spec.activate
 # 2016-12-19
 # Требуется для гема «airbrake»: https://rubygems.org/gems/airbrake/versions/5.6.1
 gem 'airbrake-ruby', '1.6.0'
+# 2016-12-19
+# https://meta.discourse.org/t/54462
+# «The Plugin::Instance.find_all method incorrectly treats every file with the «plugin.rb» name
+# as a Discourse plugin».
 gem 'dfg-airbrake', '5.6.2', {require_name: 'airbrake'}
 # 2016-12-19
 # В Airbrake 5 API поменялся:

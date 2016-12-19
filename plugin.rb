@@ -1,6 +1,6 @@
 # name: df-core
 # about: A common functionality of my Discourse plugins.
-# version: 1.1.1
+# version: 1.2.0
 # authors: Dmitry Fedyuk
 # url: https://discourse.pro
 #register_asset 'javascripts/lib/sprintf.js'
@@ -11,17 +11,37 @@ pluginAppPath = "#{Rails.root}/plugins/df-core/app/"
 Discourse::Application.config.autoload_paths += Dir["#{pluginAppPath}models", "#{pluginAppPath}controllers"]
 # Из коробки airbrake не устанавливается.
 # Поэтому чуточку подправил его и устанавливаю локальную версию.
-spec_file = "#{Rails.root}/plugins/df-core/gems/2.2.2/specifications/airbrake-4.3.0.gemspec"
-spec = Gem::Specification.load spec_file
-spec.activate
-require 'airbrake'
+#spec = Gem::Specification.load \
+#	"#{Rails.root}/plugins/df-core/gems/2.2.2/specifications/airbrake-4.3.0.gemspec"
+#spec.activate
+# 2016-12-19
+# Требуется для гема «airbrake»: https://rubygems.org/gems/airbrake/versions/5.6.1
+gem 'airbrake-ruby', '1.6.0'
+gem 'dfg-airbrake', '5.6.2', {require_name: 'airbrake'}
+# 2016-12-19
+# В Airbrake 5 API поменялся:
+# https://github.com/airbrake/airbrake/blob/master/docs/Migration_guide_from_v4_to_v5.md#general-changes
 Airbrake.configure do |c|
-  c.api_key = 'c07658a7417f795847b2280bc2fd7a79'
-  c.development_environments = []
-  c.host = 'log.dmitry-fedyuk.com'
-  c.port = 80
-  c.secure  = false
+	# 2016-12-19
+	# Берётся из адреса: http://log.dmitry-fedyuk.com/apps/559ed7e76d61673d30000000
+	c.project_id = '559ed7e76d61673d30000000'
+	c.project_key = 'c07658a7417f795847b2280bc2fd7a79'
+	# 2016-12-19
+	# The development_environments option was renamed to ignore_environments.
+	# Its behaviour was also slightly changed.
+	# By default, the library sends exceptions in all environments,
+	# so you don't need to assign an empty Array anymore to get this behavior.
+	# https://github.com/airbrake/airbrake/blob/master/docs/Migration_guide_from_v4_to_v5.md#development-environments
+	# 2016-12-19
+	# https://github.com/airbrake/airbrake/blob/master/docs/Migration_guide_from_v4_to_v5.md#port
+	c.host = 'http://log.dmitry-fedyuk.com'
 end
+=begin
+2016-12-19
+Используется из dfg-paypal:
+https://github.com/discourse-pro/dfg-paypal/blob/0.8.2/lib/paypal/nvp/request.rb#L4
+https://github.com/discourse-pro/dfg-paypal/blob/0.8.2/lib/paypal/payment/response/reference.rb#L4
+=end
 gem 'attr_required', '1.0.0'
 # 2016-12-12
 # Оригинальный https://github.com/nov/paypal-express перестал работать:

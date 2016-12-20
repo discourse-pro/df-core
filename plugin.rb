@@ -9,46 +9,14 @@ register_asset 'lib/magnific-popup/main.js'
 register_asset 'stylesheets/main.scss'
 pluginAppPath = "#{Rails.root}/plugins/df-core/app/"
 Discourse::Application.config.autoload_paths += Dir["#{pluginAppPath}models", "#{pluginAppPath}controllers"]
-# 2016-12-19
-# Требуется для гема «airbrake»: https://rubygems.org/gems/airbrake/versions/5.6.1
-gem 'airbrake-ruby', '1.6.0'
-# 2016-12-19
-# https://meta.discourse.org/t/54462
-# «The Plugin::Instance.find_all method incorrectly treats every file with the «plugin.rb» name
-# as a Discourse plugin».
-gem 'dfg-airbrake', '5.6.2', {require_name: 'airbrake'}
-# 2016-12-19
-# В Airbrake 5 API поменялся:
-# https://github.com/airbrake/airbrake/blob/v5.6.1/docs/Migration_guide_from_v4_to_v5.md#general-changes
-Airbrake.configure do |c|
-=begin
-2016-12-19
-«The development_environments option was renamed to ignore_environments.
-Its behaviour was also slightly changed.
-By default, the library sends exceptions in all environments,
-so you don't need to assign an empty Array anymore to get this behavior.»
-https://github.com/airbrake/airbrake/blob/v5.6.1/docs/Migration_guide_from_v4_to_v5.md#development-environments
-=end
-	# 2016-12-19
-	# https://github.com/airbrake/airbrake/blob/v5.6.1/docs/Migration_guide_from_v4_to_v5.md#port
-	c.host = 'http://log.dmitry-fedyuk.com'
-	# 2016-12-19
-	# Берётся из адреса: http://log.dmitry-fedyuk.com/apps/559ed7e76d61673d30000000
-	c.project_id = '559ed7e76d61673d30000000'
-	c.project_key = 'c07658a7417f795847b2280bc2fd7a79'
-=begin
-2016-12-19
-«You must set this if you want Airbrake backtraces to link to GitHub.
-In Rails projects this value should typically be equal to Rails.root.»
-https://github.com/airbrake/airbrake/blob/v5.6.1/docs/Migration_guide_from_v4_to_v5.md#user-content-project-root
-
-«Providing this option helps us to filter out repetitive data from backtrace frames
-and link to GitHub files from our dashboard.»
-https://github.com/airbrake/airbrake-ruby/blob/v1.6.0/README.md#root_directory
-
-Заметил, что отныне без этой опции стек вызовов не раскрашивается.
-=end
-	c.root_directory = Rails.root
+# 2016-12-20
+# Sentry exception tracking software
+# https://docs.sentry.io/clients/ruby/integrations/rails/#installation
+gem 'sentry-raven', '2.2.0'
+Raven.configure do |c|
+	# 2016-12-20
+	# https://github.com/getsentry/raven-ruby/blob/v2.2.0/README.md#raven-only-runs-when-sentry_dsn-is-set
+	c.dsn = 'https://f2e17450e7824057a25ec9f1685afc36:55d6ce963ec64c5897277510fb2c011e@sentry.io/123623'
 end
 =begin
 2016-12-19
@@ -85,14 +53,12 @@ end
 Paypal::NVP::Request.module_eval do
 	def post(method, params)
 		allParams = common_params.merge(params).merge(:METHOD => method)
-=begin
-2016-12-19
-В Airbrake 5 синтаксис notify изменился:
-https://github.com/airbrake/airbrake/blob/v5.6.1/docs/Migration_guide_from_v4_to_v5.md#notify
-«The support for api_key, error_message, backtrace, parameters and session was removed.»
-https://github.com/airbrake/airbrake-ruby/blob/v1.6.0/README.md#airbrakenotify
-=end
-		Airbrake.notify "POST #{method}", allParams.merge('URL' => self.class.endpoint)
+		# 2016-12-20
+		# https://docs.sentry.io/clients/ruby/context/
+		Raven.capture_message "POST #{method}",
+			extra: allParams.merge('URL' => self.class.endpoint),
+			level: 'debug',
+			server_name: Discourse.current_hostname
 		RestClient.post(self.class.endpoint, allParams)
 	end
 	alias_method :core__request, :request

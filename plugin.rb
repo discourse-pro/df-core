@@ -1,6 +1,6 @@
 # name: df-core
 # about: A common functionality of my Discourse plugins.
-# version: 1.2.2
+# version: 1.2.3
 # authors: Dmitry Fedyuk
 # url: https://discourse.pro
 #register_asset 'javascripts/lib/sprintf.js'
@@ -26,11 +26,17 @@ https://github.com/discourse-pro/dfg-paypal/blob/0.8.2/lib/paypal/payment/respon
 =end
 gem 'attr_required', '1.0.0'
 # 2017-06-16
-# The «rest-client» and «http-cookie» gem dependency has been deleted from the Discourse today:
-# https://github.com/discourse/discourse/commit/d82dbd56
-# Out «dfg-paypal» gem requires «rest-client», and the «rest-client» gem requires the «http-cookie» gem,
-# so we are forced to add the «rest-client» and «http-cookie» gems dependency by the code below.
-# https://rubygems.org/gems/rest-client/
+# The «rest-client», «http-cookie», and «domain_name» gems dependency
+# has been deleted from the Discourse today: https://github.com/discourse/discourse/commit/d82dbd56
+# Out «dfg-paypal» gem depends on the «rest-client» gem.
+# The «rest-client» gem depends on the «http-cookie» gem.
+# The «http-cookie» gem depends on the «domain_name» gem.
+# So we are forced to add the «rest-client», «http-cookie», and «domain_name» gems dependency
+# by the code below.
+# https://rubygems.org/gems/rest-client
+# https://rubygems.org/gems/http-cookie
+# https://rubygems.org/gems/domain_name
+gem 'domain_name', '0.5.20170404' # The latest version on today (2017-06-16)
 gem 'http-cookie', '1.0.3' # The latest version on today (2017-06-16)
 gem 'rest-client', '2.0.2' # The latest version on today (2017-06-16)
 # 2016-12-12

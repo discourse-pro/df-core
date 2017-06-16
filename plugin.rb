@@ -1,6 +1,6 @@
 # name: df-core
 # about: A common functionality of my Discourse plugins.
-# version: 1.2.0
+# version: 1.2.1
 # authors: Dmitry Fedyuk
 # url: https://discourse.pro
 #register_asset 'javascripts/lib/sprintf.js'
@@ -25,6 +25,12 @@ https://github.com/discourse-pro/dfg-paypal/blob/0.8.2/lib/paypal/nvp/request.rb
 https://github.com/discourse-pro/dfg-paypal/blob/0.8.2/lib/paypal/payment/response/reference.rb#L4
 =end
 gem 'attr_required', '1.0.0'
+# 2017-06-16
+# The «rest-client» gem dependency has been deleted from the Discourse today:
+# https://github.com/discourse/discourse/commit/d82dbd56
+# Out «dfg-paypal» gem requires «rest-client»,
+# so we are forced to add the «rest-client» gem dependency by the code below.
+gem 'rest-client', '2.0.2'
 # 2016-12-12
 # Оригинальный https://github.com/nov/paypal-express перестал работать:
 # https://github.com/nov/paypal-express/issues/99

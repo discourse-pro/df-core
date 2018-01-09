@@ -2,7 +2,10 @@ require_dependency 'application_controller'
 module ::Df::Core
 	class ThumbController < ::ApplicationController
 		layout false
-		skip_before_filter :preload_json, :check_xhr
+		# 2018-01-10
+		# "`skip_before_filter` is deprecated, I need to replace it with `skip_before_action`":
+		# https://github.com/discourse-pro/df-core/issues/4
+		skip_before_action :preload_json, :check_xhr
 		def index
 			original = params[:original]
 			upload = Upload.find_by(sha1: original) || Upload.find_by(url: original)

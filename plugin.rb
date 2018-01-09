@@ -1,6 +1,6 @@
 # name: df-core
 # about: A common functionality of my Discourse plugins.
-# version: 1.2.4
+# version: 1.2.5
 # authors: Dmitry Fedyuk
 # url: https://discourse.pro
 #register_asset 'javascripts/lib/sprintf.js'
@@ -93,6 +93,13 @@ Paypal::NVP::Request.module_eval do
 		core__request method, params
 	end
 end
+# 2018-01-09
+# 1) "«NameError: uninitialized constant SiteSettings::DefaultsProvider::DistributedCache»
+# on `bundle exec rake db:migrate` after upgrading to Discourse v1.9.0.beta11":
+# https://github.com/discourse-pro/df-core/issues/1
+# 2) "Why does the `SiteSettings` class use the `DistributedCache`
+# without a `require 'distributed_cache';` statement?": https://meta.discourse.org/t/77580
+require 'distributed_cache'
 require 'site_setting_extension'
 SiteSettingExtension.module_eval do
 	alias_method :core__types, :types

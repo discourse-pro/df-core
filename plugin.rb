@@ -101,15 +101,17 @@ end
 # without a `require 'distributed_cache';` statement?": https://meta.discourse.org/t/77580
 require 'distributed_cache'
 require 'site_setting_extension'
-SiteSettings::TypeSupervisor.module_eval do
-	alias_method :core__to_rb_value, :to_rb_value
-	def to_rb_value(name, value, override_type = nil)
-		begin
-		  result = core__to_rb_value(name, value, override_type)
-		rescue ArgumentError
-		  result = value
+if defined?(SiteSettings::TypeSupervisor)
+	SiteSettings::TypeSupervisor.module_eval do
+		alias_method :core__to_rb_value, :to_rb_value
+		def to_rb_value(name, value, override_type = nil)
+			begin
+			  result = core__to_rb_value(name, value, override_type)
+			rescue ArgumentError
+			  result = value
+			end
+			return result
 		end
-		return result
 	end
 end
 SiteSettingExtension.module_eval do

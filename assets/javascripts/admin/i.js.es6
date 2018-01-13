@@ -1,9 +1,7 @@
 import SiteSetting from 'admin/components/site-setting';
 export default {name: 'df-core-admin', initialize() {
 	/** @type {String[]} */
-	const myTypes = [
-		'df_editor', 'df_password', 'df_textarea', 'paid_membership_plans', 'paypal_buttons'
-	];
+	const myTypes = ['df_editor', 'df_password', 'df_textarea', 'paid_membership_plans', 'paypal_buttons'];
 	SiteSetting.reopen({
 		/**
 		 * 2015-07-06
@@ -17,8 +15,7 @@ export default {name: 'df-core-admin', initialize() {
 		 */
 		_dfDidInsertElement: function() {
 			const settingName = this.get('setting.setting');
-			// Проворачиваем нашу операцию только для наших настроек,
-			// не затрагивая настройки ядра.
+			// Проворачиваем нашу операцию только для наших настроек, не затрагивая настройки ядра.
 			if (-1 < settingName.indexOf('«')) {
 				this.$().closest('.row.setting').addClass(this.get('setting.setting'));
 			}
@@ -27,10 +24,7 @@ export default {name: 'df-core-admin', initialize() {
 			var type = this.get('setting.type');
 			return -1 < myTypes.indexOf(type) ? type : this._super();
 		}.property('setting.type')
-		/**
-		 * 2015-08-27
-		 * https://meta.discourse.org/t/32572
-		 */
+		// 2015-08-27 https://meta.discourse.org/t/32572
 		,typeClass: function() {
 			return this.get('componentType').replace(/_/g, '-');
 		}.property('componentType')

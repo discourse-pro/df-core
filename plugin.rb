@@ -118,6 +118,15 @@ if defined?(SiteSettings::TypeSupervisor)
 				return result
 			end
 		end
+		alias_method :core__to_rb_value, :to_rb_value
+		def to_rb_value(name, value, override_type = nil)
+			begin
+			  result = core__to_rb_value(name, value, override_type)
+			rescue ArgumentError
+			  result = value
+			end
+			return result
+		end
 	end
 end
 after_initialize do

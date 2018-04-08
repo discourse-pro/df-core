@@ -41,6 +41,10 @@ gem 'domain_name', '0.5.20170404' # The latest version on today (2017-06-16)
 gem 'http-cookie', '1.0.3' # The latest version on today (2017-06-16)
 gem 'netrc', '0.11.0' # The latest version on today (2017-06-16)
 gem 'rest-client', '2.0.2' # The latest version on today (2017-06-16)
+# 2018-04-08
+# «Could not find 'mime-types' (< 4.0, >= 1.16) among 260 total gem(s)»
+# https://github.com/discourse-pro/df-core/issues/5
+gem 'mime-types', '3.1'
 # 2016-12-12
 # Оригинальный https://github.com/nov/paypal-express перестал работать:
 # https://github.com/nov/paypal-express/issues/99

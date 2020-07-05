@@ -1,6 +1,6 @@
 # name: df-core
 # about: A common functionality of my Discourse plugins.
-# version: 1.4.1
+# version: 1.4.2
 # authors: Dmitry Fedyuk
 # url: https://discourse.pro
 #register_asset 'javascripts/lib/sprintf.js'
@@ -16,6 +16,9 @@ Discourse::Application.config.autoload_paths += Dir["#{pluginAppPath}models", "#
 # 2) "Why does the `SiteSettings` class use the `DistributedCache`
 # without a `require 'distributed_cache';` statement?": https://meta.discourse.org/t/77580
 require 'distributed_cache'
+# 2020-07-05
+# I have commentet out this line to fix the bug: «uninitialized constant SiteSettingExtension::SiteSettings»
+# https://discourse.pro/t/324
 #require 'site_setting_extension'
 if defined?(SiteSettings::TypeSupervisor)
 	SiteSettings::TypeSupervisor.module_eval do

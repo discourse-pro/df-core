@@ -16,7 +16,7 @@ Discourse::Application.config.autoload_paths += Dir["#{pluginAppPath}models", "#
 # 2) "Why does the `SiteSettings` class use the `DistributedCache`
 # without a `require 'distributed_cache';` statement?": https://meta.discourse.org/t/77580
 require 'distributed_cache'
-require 'site_setting_extension'
+#require 'site_setting_extension'
 if defined?(SiteSettings::TypeSupervisor)
 	SiteSettings::TypeSupervisor.module_eval do
 		class <<self

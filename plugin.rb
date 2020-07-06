@@ -37,6 +37,9 @@ if defined?(SiteSettings::TypeSupervisor)
 				return result
 			end
 		end
+		# 2020-07-06
+		# «rake aborted!» / «ArgumentError: type» / «lib/site_settings/type_supervisor.rb:112:in `to_rb_value'»
+		# on `bundle exec rake db:migrate`: https://github.com/discourse-pro/df-core/issues/2
 		alias_method :core__to_rb_value, :to_rb_value
 		def to_rb_value(name, value, override_type = nil)
 			begin

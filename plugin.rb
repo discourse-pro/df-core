@@ -19,6 +19,7 @@ require 'distributed_cache'
 # 2020-07-05
 # I have commentet out this line to fix the bug: «uninitialized constant SiteSettingExtension::SiteSettings»
 # https://discourse.pro/t/324
+require 'site_settings/validations'
 require 'site_settings/type_supervisor'
 #require 'site_settings/deprecated_settings'
 #require 'site_setting_extension'

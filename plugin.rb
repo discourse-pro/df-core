@@ -21,35 +21,33 @@ require 'distributed_cache'
 # https://discourse.pro/t/324
 require 'site_settings/deprecated_settings'
 require 'site_setting_extension'
-if defined?(SiteSettings::TypeSupervisor)
-	SiteSettings::TypeSupervisor.module_eval do
-		class <<self
-			alias_method :core__types, :types
-			def types
-				result = @types
-				if not result
-					result = core__types
-					result[:df_editor] = 500;
-					result[:df_password] = 501; # 2015-08-31 input type=password
-					result[:df_textarea] = 502; # 2015-08-27 textarea без редактора
-					result[:paypal_buttons] = 503;
-					result[:paid_membership_plans] = 504;
-				end
-				return result
-			end
-		end
-		# 2020-07-06
-		# «rake aborted!» / «ArgumentError: type» / «lib/site_settings/type_supervisor.rb:112:in `to_rb_value'»
-		# on `bundle exec rake db:migrate`: https://github.com/discourse-pro/df-core/issues/2
-		alias_method :core__to_rb_value, :to_rb_value
-		def to_rb_value(name, value, override_type = nil)
-			begin
-			  result = core__to_rb_value(name, value, override_type)
-			rescue ArgumentError
-			  result = value
+SiteSettings::TypeSupervisor.module_eval do
+	class <<self
+		alias_method :core__types, :types
+		def types
+			result = @types
+			if not result
+				result = core__types
+				result[:df_editor] = 500;
+				result[:df_password] = 501; # 2015-08-31 input type=password
+				result[:df_textarea] = 502; # 2015-08-27 textarea без редактора
+				result[:paypal_buttons] = 503;
+				result[:paid_membership_plans] = 504;
 			end
 			return result
 		end
+	end
+	# 2020-07-06
+	# «rake aborted!» / «ArgumentError: type» / «lib/site_settings/type_supervisor.rb:112:in `to_rb_value'»
+	# on `bundle exec rake db:migrate`: https://github.com/discourse-pro/df-core/issues/2
+	alias_method :core__to_rb_value, :to_rb_value
+	def to_rb_value(name, value, override_type = nil)
+		begin
+		  result = core__to_rb_value(name, value, override_type)
+		rescue ArgumentError
+		  result = value
+		end
+		return result
 	end
 end
 after_initialize do

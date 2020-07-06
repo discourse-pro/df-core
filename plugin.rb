@@ -19,8 +19,9 @@ require 'distributed_cache'
 # 2020-07-05
 # I have commentet out this line to fix the bug: «uninitialized constant SiteSettingExtension::SiteSettings»
 # https://discourse.pro/t/324
-require 'site_settings/deprecated_settings'
-require 'site_setting_extension'
+require 'site_settings/type_supervisor'
+#require 'site_settings/deprecated_settings'
+#require 'site_setting_extension'
 SiteSettings::TypeSupervisor.module_eval do
 	class <<self
 		alias_method :core__types, :types

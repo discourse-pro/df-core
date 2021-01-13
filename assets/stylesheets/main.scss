@@ -1,6 +1,8 @@
-.admin-contents {@import 'admin/*';}
-// Добавляем селектор .cooked,
-// чтобы наше правило имело приоритет перед стандартным.
+.admin-contents {
+	@import 'admin/_editor';
+  	@import 'admin/_settings';
+}
+// Добавляем селектор .cooked, чтобы наше правило имело приоритет перед стандартным.
 .cooked {
 	.solved-panel {
 		// 2015-07-26

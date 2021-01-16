@@ -38,4 +38,3 @@ module ::Df::Core
 		end
 	end
 end
-

@@ -1,10 +1,8 @@
 /* Magnific Popup CSS */
 // 2022-08-14
-// 1) If not specify the full path,
-// then Discourse will include all stylesheets with the base name withing all load paths:
-// https://sass-lang.com/documentation/at-rules/import#load-paths.
-// 2) SASS does not allow variables in @import paths: https://stackoverflow.com/a/37569018
-@import 'plugins/df-core/assets/lib/magnific-popup/settings';
+// 1) It seems that we can use a short path here.
+// 2) The full path does not work here for an unknown reason.
+@import 'settings';
 
 ////////////////////////
 //
@@ -652,8 +650,6 @@ button {
 	}
 }
 // 2022-08-14
-// 1) If not specify the full path,
-// then Discourse will include all stylesheets with the base name withing all load paths:
-// https://sass-lang.com/documentation/at-rules/import#load-paths.
-// 2) SASS does not allow variables in @import paths: https://stackoverflow.com/a/37569018
-@import 'plugins/df-core/assets/lib/magnific-popup/new_arrows';
+// 1) It seems that we can use a short path here.
+// 2) The full path does not work here for an unknown reason.
+@import 'new_arrows';

@@ -1,6 +1,11 @@
 .admin-contents {
-	@import 'admin/_editor';
-  	@import 'admin/_settings';
+	// 2022-08-14
+	// 1) If not specify the full path,
+	// then Discourse will include all stylesheets with the base name withing all load paths:
+	// https://sass-lang.com/documentation/at-rules/import#load-paths.
+	// 2) SASS does not allow variables in @import paths: https://stackoverflow.com/a/37569018
+	@import 'plugins/df-core/assets/stylesheets/admin/editor';
+  	@import 'plugins/df-core/assets/stylesheets/admin/settings';
 }
 // Добавляем селектор .cooked, чтобы наше правило имело приоритет перед стандартным.
 .cooked {
@@ -11,4 +16,9 @@
 		.by {display: initial;}
 	}
 }
-@import '../lib/magnific-popup/main';
+// 2022-08-14
+// 1) If not specify the full path,
+// then Discourse will include all stylesheets with the base name withing all load paths:
+// https://sass-lang.com/documentation/at-rules/import#load-paths.
+// 2) SASS does not allow variables in @import paths: https://stackoverflow.com/a/37569018
+@import 'plugins/df-core/assets/lib/magnific-popup/main';

@@ -1,6 +1,6 @@
 # name: df-core
 # about: A common functionality of my Discourse plugins.
-# version: 1.4.3
+# version: 1.5.0
 # authors: Dmitry Fedyuk
 # url: https://discourse.pro
 #register_asset 'javascripts/lib/sprintf.js'

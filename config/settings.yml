@@ -23,7 +23,6 @@ df_core:
     enum: '::Df::Core::Enum::Format::ThousandsSeparator'
     default: 'thin_space'
     client: true
-# 2023-03-06 "Allow posts without body": https://github.com/tr-guide/site/issues/1
 posting:
   min_first_post_length:
     min: 0

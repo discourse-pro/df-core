@@ -23,6 +23,3 @@ df_core:
     enum: '::Df::Core::Enum::Format::ThousandsSeparator'
     default: 'thin_space'
     client: true
-posting:
-  min_first_post_length:
-    min: 0

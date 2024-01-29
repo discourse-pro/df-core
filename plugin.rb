@@ -18,17 +18,6 @@ require 'distributed_cache'
 require 'site_settings/validations'
 require 'site_settings/type_supervisor'
 SiteSettings::TypeSupervisor.module_eval do
-	class <<self
-		alias_method :core__types, :types
-		def types
-			result = @types
-			if not result
-				result = core__types
-				result[:df_textarea] = 502; # 2015-08-27 textarea без редактора
-			end
-			return result
-		end
-	end
 	# 2020-07-06
 	# «rake aborted!» / «ArgumentError: type» / «lib/site_settings/type_supervisor.rb:112:in `to_rb_value'»
 	# on `bundle exec rake db:migrate`: https://github.com/discourse-pro/df-core/issues/2

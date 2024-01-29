@@ -5,7 +5,6 @@
 	// https://sass-lang.com/documentation/at-rules/import#load-paths.
 	// 2) Other side, sub-imports should import other stylesheets only with relative paths: full paths do not work there.
 	// 3) SASS does not allow variables in @import paths: https://stackoverflow.com/a/37569018
-	@import 'plugins/df-core/assets/stylesheets/admin/editor';
   	@import 'plugins/df-core/assets/stylesheets/admin/settings';
 }
 // Добавляем селектор .cooked, чтобы наше правило имело приоритет перед стандартным.

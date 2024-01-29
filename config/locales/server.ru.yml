@@ -1,9 +1,0 @@
-ru:
-  site_settings:
-    «Money»_Decimal_Separator: 'символ-разделитель между целой и дробной частью суммы'
-    «Money»_Delimit_Currency_Symbol_from_Amount: 'Отделять ли символ валюты от суммы <a href="https://en.wikipedia.org/wiki/Thin_space">узким пробелом</a>?'
-    «Money»_Number_of_Decimals: 'Количество знаков после запятой (копейки).<br/>Для рубля лучше ставить «0».'
-    «Money»_Currency_Symbol: 'Символ валюты (перечислил популярные, чтобы Вам было удобно выделить, скопировать и вставить): <b>₽</b>, <b>€</b>, <b>£</b>, <b>¥</b>.'
-    «Money»_Currency_Symbol_Position: 'Расположение символа валюты относительно суммы.'
-    «Money»_Thousands_Separator: 'Разделитель между тысячами.'
-    «Money»_Currency: "Валюта по-умолчанию для плагинов <a href='https://discourse.pro'>discourse.pro</a>.<br/>Она применяется для показа цен и для платёжных транзакций.<br/>На текущий момент, для выбора доступны только <a href='https://developer.paypal.com/docs/classic/api/currency_codes/'>валюты, поддерживаемые PayPal</a>."

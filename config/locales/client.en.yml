@@ -4,16 +4,3 @@ en:
       site_settings:
         categories:
           df_core: 'Discourse.PRO Сommon'
-  js:
-    df:
-      core:
-        enum:
-          format:
-            thousands_separator:
-              comma: ','
-              none: 'none'
-              period: '.'
-              thin_space: 'thin space'
-          position:
-            after: 'after'
-            before: 'before'

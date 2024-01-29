@@ -4,16 +4,3 @@ ru:
       site_settings:
         categories:
           df_core: 'Discourse.PRO общее'
-  js:
-    df:
-      core:
-        enum:
-          format:
-            thousands_separator:
-              comma: ','
-              none: 'не нужен'
-              period: '.'
-              thin_space: 'узкий пробел'
-          position:
-            after: 'after'
-            before: 'before'

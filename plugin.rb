@@ -27,7 +27,6 @@ SiteSettings::TypeSupervisor.module_eval do
 				result[:df_password] = 501; # 2015-08-31 input type=password
 				result[:df_textarea] = 502; # 2015-08-27 textarea без редактора
 				result[:paypal_buttons] = 503;
-				result[:paid_membership_plans] = 504;
 			end
 			return result
 		end

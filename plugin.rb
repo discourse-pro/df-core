@@ -5,7 +5,6 @@
 # url: https://discourse.pro
 #register_asset 'javascripts/lib/sprintf.js'
 register_asset 'javascripts/admin.js', :admin
-register_asset 'lib/magnific-popup/main.js'
 register_asset 'stylesheets/main.scss'
 pluginAppPath = "#{Rails.root}/plugins/df-core/app/"
 Discourse::Application.config.autoload_paths += Dir["#{pluginAppPath}models", "#{pluginAppPath}controllers"]

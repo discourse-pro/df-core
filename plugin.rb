@@ -24,7 +24,6 @@ SiteSettings::TypeSupervisor.module_eval do
 			result = @types
 			if not result
 				result = core__types
-				result[:df_password] = 501; # 2015-08-31 input type=password
 				result[:df_textarea] = 502; # 2015-08-27 textarea без редактора
 			end
 			return result

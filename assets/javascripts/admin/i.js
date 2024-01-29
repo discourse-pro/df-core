@@ -1,7 +1,7 @@
 import SiteSetting from 'admin/components/site-setting';
 export default {name: 'df-core-admin', initialize() {
 	/** @type {String[]} */
-	const myTypes = ['df_password', 'df_textarea'];
+	const myTypes = ['df_textarea'];
 	SiteSetting.reopen({
 		/**
 		 * 2015-07-06

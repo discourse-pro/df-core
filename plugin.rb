@@ -4,10 +4,7 @@
 # authors: Dmitry Fedyuk
 # url: https://discourse.pro
 #register_asset 'javascripts/lib/sprintf.js'
-register_asset 'javascripts/admin.js', :admin
 register_asset 'stylesheets/main.scss'
-pluginAppPath = "#{Rails.root}/plugins/df-core/app/"
-Discourse::Application.config.autoload_paths += Dir["#{pluginAppPath}models", "#{pluginAppPath}controllers"]
 # 2018-01-12
 # 1) "«NameError: uninitialized constant SiteSettings::DefaultsProvider::DistributedCache»
 # on `bundle exec rake db:migrate` after upgrading to Discourse v1.9.0.beta11":
@@ -30,18 +27,4 @@ SiteSettings::TypeSupervisor.module_eval do
 		end
 		return result
 	end
-end
-after_initialize do
-	module ::Df::Core
-		class Engine < ::Rails::Engine
-			engine_name 'df_core'
-			isolate_namespace ::Df::Core
-		end
-	end
-	::Df::Core::Engine.routes.draw do
-		get '/thumb/:width/:height' => 'thumb#index'
-	end
-	Discourse::Application.routes.append do
-		mount ::Df::Core::Engine, at: '/df/core'
-	end	
 end
